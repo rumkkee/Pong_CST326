@@ -47,7 +47,8 @@ public class Paddle : MonoBehaviour
             float updatedSpeed = currentMagnitude * 2f;
 
             ballRB.velocity = Vector3.zero;
-            ballRB.AddForce(bounceDirection * currentMagnitude, ForceMode.Impulse);
+            ball.AddSpeed();
+            ballRB.AddForce(bounceDirection * ball.speed, ForceMode.Impulse);
         }
     }
 
