@@ -28,6 +28,26 @@ public class ScoreManager : MonoBehaviour
             $"Left: {leftScore}, Right: {rightScore}"
             );
 
+        CheckWinCondition(player);
+    }
+
+    private void CheckWinCondition(Player player)
+    {
+        if(leftScore >= 11 || rightScore >= 11)
+        {
+            Debug.Log($"Game Over, {player} Paddle Wins!");
+            ResetScores();
+        }
+    }
+
+    private void ResetScores()
+    {
+        leftScore = 0;
+        rightScore = 0;
+        Debug.Log(
+            "Scores Reset! \n" +
+            $"Left: {leftScore}, Right: {rightScore}"
+            );
     }
 
     private void OnDestroy()

@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         StartBall();
     }
 
+    /// <summary>
+    /// Creates and launches a ball towards the correct player. <br></br>
+    /// If this is the first round, launches towards the left. 
+    /// Else, launches towards the player who was "scored" on.
+    /// </summary>
     private void StartBall()
     {
         currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
@@ -23,13 +28,14 @@ public class GameManager : MonoBehaviour
 
     private void WinRoutine(Player scoringPlayer)
     {
-        // TODO: Destroy Ball
+        StartCoroutine(WinRoutineHelper(scoringPlayer));
+    }
+
+    private IEnumerator WinRoutineHelper(Player scoringPlayer)
+    {
         Destroy(currentBall.gameObject);
+        yield return new WaitForSeconds(1f);
 
-        // TODO Incremement winning Player's Score;
-        
-
-        // TODO: Create and Launch new ball in the direction of the losing player;
         StartBall();
     }
 
