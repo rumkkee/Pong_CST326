@@ -35,6 +35,6 @@ public class PongBall : MonoBehaviour
 
     public void AddSpeed()
     {
-        speed = speed + 5f;
+        speed = speed + 3f;
     }
 }
