@@ -14,7 +14,7 @@ public class Goal : MonoBehaviour
         PongBall ball = collider.gameObject.GetComponent<PongBall>();
         if(ball != null)
         {
-            Player winningPlayer = defendingPlayer == Player.left ? Player.right : Player.left;
+            Player winningPlayer = defendingPlayer == Player.Left ? Player.Right : Player.Left;
             OnBallScored(winningPlayer);
             // TODO: Signal that the ball has touched a goal.
         }

@@ -182,6 +182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1781193424}
     m_Modifications:
+    - target: {fileID: 241709332549673029, guid: 9374a0eb31ff5f441825e7e298b38b68, type: 3}
+      propertyPath: defendingPlayer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6748362094357036627, guid: 9374a0eb31ff5f441825e7e298b38b68, type: 3}
       propertyPath: m_LocalScale.y
       value: 28
@@ -244,6 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411651716}
+  - component: {fileID: 411651717}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -266,6 +271,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &411651717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411651715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59164da0917bbb944ba2d9c0f1b854cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftScore: 0
+  rightScore: 0
 --- !u!4 &490343742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6968915896729841530, guid: 0806b862dcad23748b100af214422062, type: 3}

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     private void WinRoutine(Player scoringPlayer)
     {
         // TODO: Destroy Ball
-        Destroy(currentBall);
+        Destroy(currentBall.gameObject);
 
         // TODO Incremement winning Player's Score;
         
@@ -41,6 +41,6 @@ public class GameManager : MonoBehaviour
 
 public enum Player
 {
-    left = 0,
-    right = 10
+    Left = 0,
+    Right = 10
 }
