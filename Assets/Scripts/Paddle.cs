@@ -17,7 +17,7 @@ public class Paddle : MonoBehaviour
 
     void FixedUpdate()
     {
-        float verticalValue = Input.GetAxis("Vertical");
+        float verticalValue = owner == Player.Left ?  Input.GetAxis("LeftPaddle") : Input.GetAxis("RightPaddle");
 
         Vector3 force = new Vector3(transform.position.x, verticalValue, transform.position.y) * speed;
         //transform.position += new Vector3(transform.position.x, verticalValue, transform.position.z) * speed * Time.deltaTime;
