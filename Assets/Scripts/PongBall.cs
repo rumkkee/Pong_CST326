@@ -6,9 +6,13 @@ public class PongBall : MonoBehaviour
 {
     private Rigidbody rb;
     public float speed;
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    public void MoveBall()
+    {
         rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
     }
 
