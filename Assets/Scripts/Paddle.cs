@@ -8,11 +8,11 @@ public class Paddle : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     private Vector3 _bounceDirection;
-    public bool isLeftPaddle;
+    public Player owner;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _bounceDirection = isLeftPaddle ? Vector3.right : Vector3.left; 
+        _bounceDirection = owner == Player.Left ? Vector3.right : Vector3.left; 
     }
 
     void FixedUpdate()
@@ -23,6 +23,12 @@ public class Paddle : MonoBehaviour
         //transform.position += new Vector3(transform.position.x, verticalValue, transform.position.z) * speed * Time.deltaTime;
 
         rb.AddForce(force, ForceMode.Force);
+    }
+
+    public void SetTeam(Player player)
+    {
+        owner = player;
+        _bounceDirection = owner == Player.Left ? Vector3.right : Vector3.left;
     }
 
     private void OnCollisionEnter(Collision collision)
