@@ -5,9 +5,19 @@ using UnityEngine;
 public class PongBall : MonoBehaviour
 {
     private Rigidbody rb;
-    private void Start()
+    public float speed;
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.left * 10f, ForceMode.Impulse);
+    }
+
+    public void MoveBall()
+    {
+        rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
+    }
+
+    public void AddSpeed()
+    {
+        speed = speed + 5f;
     }
 }
