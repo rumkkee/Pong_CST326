@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private void StartBall()
     {
         currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
-        currentBall.MoveBall();
+        currentBall.Kickoff(Player.Right);
     }
 
     private void WinRoutine(Player scoringPlayer)
