@@ -7,12 +7,12 @@ public class Paddle : MonoBehaviour
 
     private Rigidbody rb;
     public float speed;
-    private Vector3 _bounceDirection;
+    private Vector3 _facingDirection;
     public Player owner;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _bounceDirection = owner == Player.Left ? Vector3.right : Vector3.left; 
+        _facingDirection = owner == Player.Left ? Vector3.right : Vector3.left; 
     }
 
     void FixedUpdate()
@@ -27,7 +27,7 @@ public class Paddle : MonoBehaviour
     public void SetTeam(Player player)
     {
         owner = player;
-        _bounceDirection = owner == Player.Left ? Vector3.right : Vector3.left;
+        _facingDirection = owner == Player.Left ? Vector3.right : Vector3.left;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,7 +36,7 @@ public class Paddle : MonoBehaviour
         if(ball != null)
         {
             Quaternion rotation = Quaternion.Euler(0f, 0f, 60f);
-            Vector3 bounceDirection = rotation * _bounceDirection;
+            Vector3 bounceDirection = rotation * _facingDirection;
 
             Rigidbody ballRB = collision.gameObject.GetComponent<Rigidbody>();
 

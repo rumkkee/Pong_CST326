@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         Goal.OnBallScored += WinRoutine;
 
-        StartBall();
+        StartBall(Player.Right);
     }
 
     /// <summary>
@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
         currentBall.Kickoff(Player.Right);
     }
 
+    private void StartBall(Player receivingPlayer)
+    {
+        currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
+        currentBall.Kickoff(receivingPlayer);
+    }
+
     private void WinRoutine(Player scoringPlayer)
     {
         StartCoroutine(WinRoutineHelper(scoringPlayer));
@@ -36,7 +42,8 @@ public class GameManager : MonoBehaviour
         Destroy(currentBall.gameObject);
         yield return new WaitForSeconds(1f);
 
-        StartBall();
+        Player receivingPlayer = scoringPlayer == Player.Right ? Player.Left : Player.Right;
+        StartBall(receivingPlayer);
     }
 
     private void OnDestroy()
