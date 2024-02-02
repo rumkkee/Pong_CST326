@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public Player defendingPlayer;
+
+    public delegate void PlayerWon(Player winningPlayer);
+    public static event PlayerWon OnBallScored;
+
+    private void OnTriggerEnter(Collider collider)
     {
-        PongBall ball = collision.gameObject.GetComponent<PongBall>();
+        PongBall ball = collider.gameObject.GetComponent<PongBall>();
         if(ball != null)
         {
+            Player winningPlayer = defendingPlayer == Player.left ? Player.right : Player.left;
+            OnBallScored(winningPlayer);
             // TODO: Signal that the ball has touched a goal.
         }
     }
