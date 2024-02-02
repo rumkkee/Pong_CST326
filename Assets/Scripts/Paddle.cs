@@ -5,23 +5,27 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
 
-    private Rigidbody rb;
-    public float speed;
+    private Rigidbody _rb;
+    [SerializeField] private float _speed;
+
     private Vector3 _facingDirection;
+    private float _length;
+
     public Player owner;
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        _facingDirection = owner == Player.Left ? Vector3.right : Vector3.left; 
+        _rb = GetComponent<Rigidbody>();
+        _length = transform.localScale.y;
     }
 
     void FixedUpdate()
     {
         float verticalValue = owner == Player.Left ?  Input.GetAxis("LeftPaddle") : Input.GetAxis("RightPaddle");
 
-        Vector3 force = new Vector3(transform.position.x, verticalValue, transform.position.y) * speed;
+        Vector3 force = new Vector3(transform.position.x, verticalValue, transform.position.y) * _speed;
 
-        rb.AddForce(force, ForceMode.Force);
+        _rb.AddForce(force, ForceMode.Force);
     }
 
     public void SetTeam(Player player)
@@ -35,25 +39,41 @@ public class Paddle : MonoBehaviour
         PongBall ball = collision.gameObject.GetComponent<PongBall>();
         if(ball != null)
         {
-            Quaternion rotation = Quaternion.Euler(0f, 0f, 60f);
-            Vector3 bounceDirection = rotation * _facingDirection;
+            // Determine where the ball hit the paddle on a scale of 1 to -1.
+            float collisionPos = ball.transform.position.y - transform.position.y;
+            //Debug.Log($"Collision offset: {collisionPos}");
+
+            float collisionOffset = collisionPos;
+
+            // Ensuring collisionOffset is within -2.5 to 2.5;
+            if(collisionPos > _length / 2)
+            {
+                collisionOffset = _length / 2;
+            }
+            else if(collisionPos < -_length / 2)
+            {
+                collisionOffset = -_length / 2;
+            }
+
+            // Converting collisionOffset (-2.5 to 2.5) to a range from -1 to 1.
+            float offsetNormalized = collisionOffset / (_length * 0.5f);
+            //Debug.Log($"Offset normalized: {offsetNormalized}");
+
+            // Flipping the rotation degrees based on whether the paddle is facing left or right.
+            float rotationDegrees = offsetNormalized * 60f;  
+            rotationDegrees *= owner == Player.Left ? 1 : -1;
+
+            // Use the difference to determine the ball's new direction.
+            Quaternion rotation = Quaternion.AngleAxis(rotationDegrees, Vector3.forward);
+            Vector3 newDirection = rotation * _facingDirection;
+
+            newDirection.Normalize();
 
             Rigidbody ballRB = collision.gameObject.GetComponent<Rigidbody>();
 
-            rotation = Quaternion.Euler(0f, 0f, ballRB.rotation.z + 180f);
-            //ballRB.MoveRotation(rotation);
-            
-
-            // TODO: Set a Force on the ball determined by the position it hit on the paddle
-
-            // The Ball will be set to move either +/- 60 degrees
-
-            float currentMagnitude = ballRB.velocity.magnitude;
-            float updatedSpeed = currentMagnitude * 2f;
-
             ballRB.velocity = Vector3.zero;
             ball.AddSpeed();
-            ballRB.AddForce(bounceDirection * ball.speed, ForceMode.Impulse);
+            ballRB.AddForce(newDirection * ball.speed, ForceMode.Impulse);
         }
     }
 
