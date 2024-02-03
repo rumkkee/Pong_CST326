@@ -6,6 +6,10 @@ public class PongBall : MonoBehaviour
 {
     private Rigidbody rb;
     public float speed;
+
+    public delegate void BallCollided();
+    public static event BallCollided OnBallCollision;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,4 +41,10 @@ public class PongBall : MonoBehaviour
     {
         speed = speed + 3f;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        OnBallCollision();
+    }
+
 }
