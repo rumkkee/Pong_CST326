@@ -45,6 +45,7 @@ public class PongBall : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         OnBallCollision();
+        ParticlesManager.instance.SpawnParticles(transform.position);
     }
 
 }
