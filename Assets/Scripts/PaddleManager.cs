@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class PaddleManager : MonoBehaviour
 {
-    [SerializeField] Paddle paddlePrefab;
-    private Paddle leftPaddle;
-    private Paddle rightPaddle;
+    [SerializeField] private Paddle _paddlePrefab;
+    private Paddle _leftPaddle;
+    private Paddle _rightPaddle;
+
+    public static PaddleManager instance;
 
     private void Awake()
     {
-        StartCoroutine(CreatePaddles());
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
-    private IEnumerator CreatePaddles()
+    public IEnumerator CreatePaddles()
     {
         Vector2 spawnPos = new Vector2(23.5f, 0f);
-        leftPaddle = Instantiate(paddlePrefab, -spawnPos, paddlePrefab.transform.rotation);
-        leftPaddle.SetTeam(Player.Left);
+        _leftPaddle = Instantiate(_paddlePrefab, -spawnPos, _paddlePrefab.transform.rotation);
+        _leftPaddle.SetTeam(Player.Left);
 
         yield return new WaitForSeconds(0.2f);
 
-        rightPaddle = Instantiate(paddlePrefab, spawnPos, paddlePrefab.transform.rotation);
-        rightPaddle.SetTeam(Player.Right);
+        _rightPaddle = Instantiate(_paddlePrefab, spawnPos, _paddlePrefab.transform.rotation);
+        _rightPaddle.SetTeam(Player.Right);
     }
 }

@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PongBall ballPrefab;
-    private PongBall currentBall;
-
+    [SerializeField] private PongBall _ballPrefab;
+    private PongBall _currentBall;
 
     private void Awake()
     {
         Goal.OnBallScored += WinRoutine;
 
-        StartBall(Player.Right);
+        
+    }
+
+    private IEnumerator Start()
+    {
+        yield return StartCoroutine(PaddleManager.instance.CreatePaddles());
+        yield return new WaitForSeconds(0.5f);
+        LaunchBall(Player.Right);
     }
 
     /// <summary>
-    /// Creates and launches a ball towards the correct player. <br></br>
+    /// Creates and launches a ball towards the given player. <br></br>
     /// If this is the first round, launches towards the left. 
     /// Else, launches towards the player who was "scored" on.
     /// </summary>
-    private void StartBall()
+    private void LaunchBall(Player receivingPlayer)
     {
-        currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
-        currentBall.Kickoff(Player.Right);
-    }
-
-    private void StartBall(Player receivingPlayer)
-    {
-        currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
-        currentBall.Kickoff(receivingPlayer);
+        _currentBall = Instantiate(_ballPrefab, Vector2.zero, Quaternion.identity);
+        _currentBall.Kickoff(receivingPlayer);
     }
 
     private void WinRoutine(Player scoringPlayer)
@@ -39,11 +39,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WinRoutineHelper(Player scoringPlayer)
     {
-        Destroy(currentBall.gameObject);
+        Destroy(_currentBall.gameObject);
         yield return new WaitForSeconds(1f);
 
         Player receivingPlayer = scoringPlayer == Player.Right ? Player.Left : Player.Right;
-        StartBall(receivingPlayer);
+        LaunchBall(receivingPlayer);
     }
 
     private void OnDestroy()
