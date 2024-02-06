@@ -20,11 +20,16 @@ public class Paddle : MonoBehaviour
 
     void FixedUpdate()
     {
+        Movement();
+    }
+
+    private void Movement()
+    {
         float verticalValue = owner == Player.Left ?  Input.GetAxis("LeftPaddle") : Input.GetAxis("RightPaddle");
 
-        Vector3 force = new Vector3(transform.position.x, verticalValue, transform.position.y) * _speed;
+        Vector3 movementDirection = new Vector3(0f, verticalValue, 0f);
 
-        _rb.AddForce(force, ForceMode.Force);
+        _rb.AddForce(movementDirection * _speed, ForceMode.Force);
     }
 
     public void SetTeam(Player player)
@@ -39,15 +44,14 @@ public class Paddle : MonoBehaviour
         if(ball != null)
         {
             // Determine where the ball hit the paddle on a scale of 1 to -1.
-            float collisionPos = ball.transform.position.y - transform.position.y;
-            float collisionOffset = collisionPos;
+            float collisionOffset = ball.transform.position.y - transform.position.y;
 
             // Ensuring collisionOffset is within -2.5 to 2.5;
-            if(collisionPos > _length / 2)
+            if(collisionOffset > _length / 2)
             {
                 collisionOffset = _length / 2;
             }
-            else if(collisionPos < -_length / 2)
+            else if(collisionOffset < -_length / 2)
             {
                 collisionOffset = -_length / 2;
             }

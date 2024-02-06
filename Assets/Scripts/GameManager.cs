@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PongBall _ballPrefab;
     private PongBall _currentBall;
 
-
     private void Awake()
     {
         Goal.OnBallScored += WinRoutine;
@@ -19,21 +18,15 @@ public class GameManager : MonoBehaviour
     {
         yield return StartCoroutine(PaddleManager.instance.CreatePaddles());
         yield return new WaitForSeconds(0.5f);
-        StartBall(Player.Right);
+        LaunchBall(Player.Right);
     }
 
     /// <summary>
-    /// Creates and launches a ball towards the correct player. <br></br>
+    /// Creates and launches a ball towards the given player. <br></br>
     /// If this is the first round, launches towards the left. 
     /// Else, launches towards the player who was "scored" on.
     /// </summary>
-    private void StartBall()
-    {
-        _currentBall = Instantiate(_ballPrefab, Vector2.zero, Quaternion.identity);
-        _currentBall.Kickoff(Player.Right);
-    }
-
-    private void StartBall(Player receivingPlayer)
+    private void LaunchBall(Player receivingPlayer)
     {
         _currentBall = Instantiate(_ballPrefab, Vector2.zero, Quaternion.identity);
         _currentBall.Kickoff(receivingPlayer);
@@ -50,7 +43,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Player receivingPlayer = scoringPlayer == Player.Right ? Player.Left : Player.Right;
-        StartBall(receivingPlayer);
+        LaunchBall(receivingPlayer);
     }
 
     private void OnDestroy()

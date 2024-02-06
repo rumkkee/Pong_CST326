@@ -32,11 +32,6 @@ public class PongBall : MonoBehaviour
         _rb.AddRelativeForce(rotatedDirection * speed, ForceMode.Impulse);
     }
 
-    public void MoveBall()
-    {
-        _rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
-    }
-
     public void AddSpeed()
     {
         speed = speed + speedBoostPerHit;
