@@ -13,9 +13,10 @@ public class GlowOnCollision : MonoBehaviour
     {
         _material = GetComponent<MeshRenderer>().material;
         _material.EnableKeyword("_EMISSION");
+        Glow();
     }
 
-    public void AddGlow()
+    public void Glow()
     {
         if(_glowRoutine != null)
         {
@@ -39,6 +40,6 @@ public class GlowOnCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        AddGlow();
+        Glow();
     }
 }

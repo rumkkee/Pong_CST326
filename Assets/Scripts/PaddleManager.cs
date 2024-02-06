@@ -8,12 +8,17 @@ public class PaddleManager : MonoBehaviour
     private Paddle leftPaddle;
     private Paddle rightPaddle;
 
+    public static PaddleManager instance;
+
     private void Awake()
     {
-        StartCoroutine(CreatePaddles());
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
-    private IEnumerator CreatePaddles()
+    public IEnumerator CreatePaddles()
     {
         Vector2 spawnPos = new Vector2(23.5f, 0f);
         leftPaddle = Instantiate(paddlePrefab, -spawnPos, paddlePrefab.transform.rotation);

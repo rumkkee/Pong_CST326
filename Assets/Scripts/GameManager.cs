@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
     {
         Goal.OnBallScored += WinRoutine;
 
+        
+    }
+
+    private IEnumerator Start()
+    {
+        yield return StartCoroutine(PaddleManager.instance.CreatePaddles());
+        yield return new WaitForSeconds(0.5f);
         StartBall(Player.Right);
     }
 
