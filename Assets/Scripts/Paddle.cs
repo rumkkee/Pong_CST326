@@ -41,8 +41,6 @@ public class Paddle : MonoBehaviour
         {
             // Determine where the ball hit the paddle on a scale of 1 to -1.
             float collisionPos = ball.transform.position.y - transform.position.y;
-            //Debug.Log($"Collision offset: {collisionPos}");
-
             float collisionOffset = collisionPos;
 
             // Ensuring collisionOffset is within -2.5 to 2.5;
@@ -57,7 +55,6 @@ public class Paddle : MonoBehaviour
 
             // Converting collisionOffset (-2.5 to 2.5) to a range from -1 to 1.
             float offsetNormalized = collisionOffset / (_length * 0.5f);
-            //Debug.Log($"Offset normalized: {offsetNormalized}");
 
             // Flipping the rotation degrees based on whether the paddle is facing left or right.
             float rotationDegrees = offsetNormalized * 60f;  
