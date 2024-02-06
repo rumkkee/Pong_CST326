@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int leftScore;
-    public int rightScore;
+    private int _leftScore;
+    private int _rightScore;
 
     private void Awake()
     {
@@ -16,16 +16,16 @@ public class ScoreManager : MonoBehaviour
     {
         if(player == Player.Left)
         {
-            ++leftScore;
+            ++_leftScore;
         }
         else
         {
-            ++rightScore;
+            ++_rightScore;
         }
 
         Debug.Log(
             $"<b>{player}</b> player scored!\n" +
-            $"Left: {leftScore}, Right: {rightScore}"
+            $"Left: {_leftScore}, Right: {_rightScore}"
             );
 
         CheckWinCondition(player);
@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
 
     private void CheckWinCondition(Player player)
     {
-        if(leftScore >= 11 || rightScore >= 11)
+        if(_leftScore >= 11 || _rightScore >= 11)
         {
             Debug.Log($"Game Over, {player} Paddle Wins!");
             ResetScores();
@@ -42,11 +42,11 @@ public class ScoreManager : MonoBehaviour
 
     private void ResetScores()
     {
-        leftScore = 0;
-        rightScore = 0;
+        _leftScore = 0;
+        _rightScore = 0;
         Debug.Log(
             "Scores Reset! \n" +
-            $"Left: {leftScore}, Right: {rightScore}"
+            $"Left: {_leftScore}, Right: {_rightScore}"
             );
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticlesManager : MonoBehaviour
 {
-    [SerializeField] ParticleSystem collisionParticlesPrefab;
+    [SerializeField] private ParticleSystem _collisionParticlesPrefab;
 
     public static ParticlesManager instance;
 
@@ -18,6 +18,6 @@ public class ParticlesManager : MonoBehaviour
 
     public void SpawnParticles(Vector3 spawnPos)
     {
-        Instantiate(collisionParticlesPrefab, spawnPos, Quaternion.identity, transform.parent);
+        Instantiate(_collisionParticlesPrefab, spawnPos, Quaternion.identity, transform.parent);
     }
 }

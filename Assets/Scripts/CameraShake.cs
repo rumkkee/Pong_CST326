@@ -7,25 +7,24 @@ public class CameraShake : MonoBehaviour
     public float shakeAmount;
     public float speed;
 
-    private Vector3 initialPos;
-
-    private IEnumerator shakeAnimation;
+    private Vector3 _initialPos;
+    private IEnumerator _shakeAnimation;
 
     private void Awake()
     {
         PongBall.OnBallCollision += Shake;
-        initialPos = transform.position;
+        _initialPos = transform.position;
     }
 
     private void Shake()
     {
-        if(shakeAnimation != null)
+        if(_shakeAnimation != null)
         {
             StopAllCoroutines();
-            transform.position = initialPos;
+            transform.position = _initialPos;
         }
-        shakeAnimation = ShakeHelper();
-        StartCoroutine(shakeAnimation);
+        _shakeAnimation = ShakeHelper();
+        StartCoroutine(_shakeAnimation);
     }
 
     private IEnumerator ShakeHelper()
@@ -35,7 +34,7 @@ public class CameraShake : MonoBehaviour
         do
         {
             timePassed += Time.deltaTime;
-            transform.position = Vector3.Lerp(initialPos + (Vector3.left * shakeAmount) , initialPos, timePassed * speed);
+            transform.position = Vector3.Lerp(_initialPos + (Vector3.left * shakeAmount) , _initialPos, timePassed * speed);
             yield return null;
         } while(timePassed < 0.2f);
     }

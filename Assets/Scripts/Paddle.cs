@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-
-    private Rigidbody _rb;
     [SerializeField] private float _speed;
 
+    private Rigidbody _rb;
     private Vector3 _facingDirection;
     private float _length;
 

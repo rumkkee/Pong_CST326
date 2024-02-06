@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PongBall ballPrefab;
-    private PongBall currentBall;
+    [SerializeField] private PongBall _ballPrefab;
+    private PongBall _currentBall;
 
 
     private void Awake()
@@ -29,14 +29,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void StartBall()
     {
-        currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
-        currentBall.Kickoff(Player.Right);
+        _currentBall = Instantiate(_ballPrefab, Vector2.zero, Quaternion.identity);
+        _currentBall.Kickoff(Player.Right);
     }
 
     private void StartBall(Player receivingPlayer)
     {
-        currentBall = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
-        currentBall.Kickoff(receivingPlayer);
+        _currentBall = Instantiate(_ballPrefab, Vector2.zero, Quaternion.identity);
+        _currentBall.Kickoff(receivingPlayer);
     }
 
     private void WinRoutine(Player scoringPlayer)
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WinRoutineHelper(Player scoringPlayer)
     {
-        Destroy(currentBall.gameObject);
+        Destroy(_currentBall.gameObject);
         yield return new WaitForSeconds(1f);
 
         Player receivingPlayer = scoringPlayer == Player.Right ? Player.Left : Player.Right;

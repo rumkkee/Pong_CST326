@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2e2285611ea7c42955b28bf4cdb2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddlePrefab: {fileID: 8632520244467056536, guid: c342b674017092945864cdb6f51a1b5a, type: 3}
+  _paddlePrefab: {fileID: 8632520244467056536, guid: c342b674017092945864cdb6f51a1b5a, type: 3}
 --- !u!1 &197046470
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59164da0917bbb944ba2d9c0f1b854cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftScore: 0
-  rightScore: 0
 --- !u!4 &490343742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6968915896729841530, guid: 0806b862dcad23748b100af214422062, type: 3}
@@ -570,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3983abc919efdf4db8508a87af3531b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 5865695316486853563, guid: b0d49b3e449ef924aa44344598d55e48, type: 3}
+  _ballPrefab: {fileID: 5865695316486853563, guid: b0d49b3e449ef924aa44344598d55e48, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d002b51bc729d499852965c720c550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionParticlesPrefab: {fileID: 2199935384548532530, guid: 8a260b692de10344fb7964cdb4541bb3, type: 3}
+  _collisionParticlesPrefab: {fileID: 2199935384548532530, guid: 8a260b692de10344fb7964cdb4541bb3, type: 3}
 --- !u!4 &1375493900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8065107347238726498, guid: c342b674017092945864cdb6f51a1b5a, type: 3}
