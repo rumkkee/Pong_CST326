@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource _paddleHitAudio;
     [SerializeField] private AudioSource _barrierHitAudio;
-
+    [SerializeField] private AudioSource _scoreAudio;
 
     public static AudioManager instance;
 
@@ -30,5 +30,10 @@ public class AudioManager : MonoBehaviour
     public void PlayClipBarrierHit()
     {
         _barrierHitAudio.Play();
+    }
+
+    public void PlayClipOnScore()
+    {
+        _scoreAudio.Play();
     }
 }

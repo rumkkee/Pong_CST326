@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour
         {
             Player winningPlayer = defendingPlayer == Player.Left ? Player.Right : Player.Left;
             OnBallScored(winningPlayer);
+            AudioManager.instance.PlayClipOnScore();
         }
     }
 }

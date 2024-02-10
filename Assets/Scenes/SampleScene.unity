@@ -164,9 +164,9 @@ AudioSource:
   m_GameObject: {fileID: 36540243}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8164814764793669333, guid: 3c695ccec862a6d42a0e05750da9840b, type: 2}
+  OutputAudioMixerGroup: {fileID: -2811187686706834749, guid: 3c695ccec862a6d42a0e05750da9840b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 705cfa1075fd06b47b642f3f98aacea0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -782,6 +782,7 @@ MonoBehaviour:
   _mixer: {fileID: 24100000, guid: 3c695ccec862a6d42a0e05750da9840b, type: 2}
   _paddleHitAudio: {fileID: 1785855820}
   _barrierHitAudio: {fileID: 1077255300}
+  _scoreAudio: {fileID: 36540245}
 --- !u!1 &704837131
 GameObject:
   m_ObjectHideFlags: 0

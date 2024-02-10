@@ -52,7 +52,6 @@ public class PongBall : MonoBehaviour
         {
             float pitch = 2;
             pitch *= speed / maxSpeed;
-
             
             AudioManager.instance.PlayClipPaddleHit(pitch);
         }
