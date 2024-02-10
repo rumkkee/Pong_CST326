@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour
     private int _leftScore;
     private int _rightScore;
 
+    
+
     private void Awake()
     {
         Goal.OnBallScored += RaiseScore;
@@ -17,10 +19,12 @@ public class ScoreManager : MonoBehaviour
         if(player == Player.Left)
         {
             ++_leftScore;
+            ScoreDisplayManager.instance.UpdateLeftScore(_leftScore);
         }
         else
         {
             ++_rightScore;
+            ScoreDisplayManager.instance.UpdateRightScore(_rightScore);
         }
 
         Debug.Log(
