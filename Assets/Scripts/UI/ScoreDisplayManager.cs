@@ -21,10 +21,12 @@ public class ScoreDisplayManager : MonoBehaviour
     public void UpdateLeftScore(int newScore)
     {
         _leftScoreText.text = newScore.ToString();
+        StartCoroutine(ScoreTextAnimator.instance.GrowText(_leftScoreText));
     }
 
     public void UpdateRightScore(int newScore)
     {
         _rightScoreText.text = newScore.ToString();
+        StartCoroutine(ScoreTextAnimator.instance.GrowText(_rightScoreText));
     }
 }
