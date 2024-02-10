@@ -604,6 +604,37 @@ MonoBehaviour:
   speedMultiplier: 6
   _glowColor: {r: 1, g: 1, b: 1, a: 1}
   _normalColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+--- !u!1 &663073582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663073583}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &663073583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663073582}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1622975133}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704837131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BottomBarrier
       objectReference: {fileID: 0}
+    - target: {fileID: 8844543368111554277, guid: 0806b862dcad23748b100af214422062, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1334,6 +1369,7 @@ Transform:
   - {fileID: 123730844}
   - {fileID: 411651716}
   - {fileID: 1287635241}
+  - {fileID: 663073583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743498212
@@ -1493,6 +1529,10 @@ PrefabInstance:
     - target: {fileID: 8844543368111554277, guid: 0806b862dcad23748b100af214422062, type: 3}
       propertyPath: m_Name
       value: TopBarrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844543368111554277, guid: 0806b862dcad23748b100af214422062, type: 3}
+      propertyPath: m_TagString
+      value: Barrier
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

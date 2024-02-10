@@ -37,10 +37,15 @@ public class PongBall : MonoBehaviour
         speed = speed + speedBoostPerHit;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
         OnBallCollision();
         ParticlesManager.instance.SpawnParticles(transform.position);
+
+        if (other.gameObject.CompareTag("Barrier"))
+        {
+            //TODO: Play audio for colliding with barrier
+        }
     }
 
 }
