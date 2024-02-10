@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _paddleHitAudio;
     [SerializeField] private AudioSource _barrierHitAudio;
 
+
     public static AudioManager instance;
 
     private void Awake()
