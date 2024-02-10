@@ -7,6 +7,7 @@ public class PongBall : MonoBehaviour
     private Rigidbody _rb;
     public float speed;
     public float speedBoostPerHit;
+    public float maxSpeed;
 
     public delegate void BallCollided();
     public static event BallCollided OnBallCollision;
@@ -37,10 +38,23 @@ public class PongBall : MonoBehaviour
         speed = speed + speedBoostPerHit;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
         OnBallCollision();
         ParticlesManager.instance.SpawnParticles(transform.position);
+
+        if (other.gameObject.CompareTag("Barrier"))
+        {
+            //TODO: Play audio for colliding with barrier
+            AudioManager.instance.PlayClipBarrierHit();
+        }
+        else if (other.gameObject.CompareTag("Paddle"))
+        {
+            float pitch = 2;
+            pitch *= speed / maxSpeed;
+            
+            AudioManager.instance.PlayClipPaddleHit(pitch);
+        }
     }
 
 }
