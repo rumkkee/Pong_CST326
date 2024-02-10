@@ -8,6 +8,9 @@ public class ScoreTextAnimator : MonoBehaviour
     [SerializeField] private float largeTextSize;
     [SerializeField] private float speedMultiplier;
 
+    [SerializeField] private Color _glowColor;
+    [SerializeField] private Color _normalColor;
+
     public static ScoreTextAnimator instance;
 
     private void Awake()
@@ -37,6 +40,7 @@ public class ScoreTextAnimator : MonoBehaviour
         {
             timePassed += Time.deltaTime;
             text.fontSize = Mathf.SmoothStep(shrunkTextSize, largeTextSize, timePassed * speedMultiplier * 2);
+            text.color = Color.Lerp(_normalColor, _glowColor, timePassed * speedMultiplier * 2);
             yield return null;
         }
         while (text.fontSize != largeTextSize);
@@ -47,9 +51,20 @@ public class ScoreTextAnimator : MonoBehaviour
         do
         {
             timePassed += Time.deltaTime;
-            text.fontSize = Mathf.SmoothStep(largeTextSize, normalTextSize, timePassed * speedMultiplier * 1.5f);
+            text.fontSize = Mathf.SmoothStep(largeTextSize, normalTextSize, timePassed * speedMultiplier);
             yield return null;
         }
-        while (text.fontSize != normalTextSize);        
+        while (text.fontSize != normalTextSize);
+
+        timePassed = 0;
+
+        do
+        {
+            timePassed += Time.deltaTime;
+            text.color = Color.Lerp(_glowColor, _normalColor, timePassed * speedMultiplier * 0.1f);
+            yield return null;
+        }
+        while (text.color != _normalColor);
+
     } 
 }
