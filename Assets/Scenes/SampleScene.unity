@@ -600,8 +600,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalTextSize: 200
-  largeTextSize: 400
-  speedMultiplier: 3
+  largeTextSize: 320
+  speedMultiplier: 6
 --- !u!1 &704837131
 GameObject:
   m_ObjectHideFlags: 0
