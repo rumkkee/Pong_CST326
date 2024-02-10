@@ -38,9 +38,9 @@ public class Paddle : MonoBehaviour
         _facingDirection = owner == Player.Left ? Vector3.right : Vector3.left;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        PongBall ball = collision.gameObject.GetComponent<PongBall>();
+        PongBall ball = other.gameObject.GetComponent<PongBall>();
         if(ball != null)
         {
             // Determine where the ball hit the paddle on a scale of 1 to -1.
@@ -61,19 +61,19 @@ public class Paddle : MonoBehaviour
 
             // Flipping the rotation degrees based on whether the paddle is facing left or right.
             float rotationDegrees = offsetNormalized * 60f;  
-            rotationDegrees *= owner == Player.Left ? 1 : -1;
+            rotationDegrees *= _facingDirection.x;
 
             // Use the difference to determine the ball's new direction.
             Quaternion rotation = Quaternion.AngleAxis(rotationDegrees, Vector3.forward);
-            Vector3 newDirection = rotation * _facingDirection;
+            Vector3 ballTrajectory = rotation * _facingDirection;
 
-            newDirection.Normalize();
+            ballTrajectory.Normalize();
 
-            Rigidbody ballRB = collision.gameObject.GetComponent<Rigidbody>();
+            Rigidbody ballRB = ball.GetComponent<Rigidbody>();
 
             ballRB.velocity = Vector3.zero;
             ball.AddSpeed();
-            ballRB.AddForce(newDirection * ball.speed, ForceMode.Impulse);
+            ballRB.AddForce(ballTrajectory * ball.speed, ForceMode.Impulse);
         }
     }
 
