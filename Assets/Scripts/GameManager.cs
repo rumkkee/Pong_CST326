@@ -56,5 +56,6 @@ public class GameManager : MonoBehaviour
 public enum Player
 {
     Left = 0,
-    Right = 10
+    Right = 10,
+    None = 100
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class PaddleManager : MonoBehaviour
 {
     [SerializeField] private Paddle _paddlePrefab;
+    [SerializeField] private Color _leftPaddleColor;
+    [SerializeField] private Color _rightPaddleColor;
+
     private Paddle _leftPaddle;
     private Paddle _rightPaddle;
 
@@ -24,14 +27,14 @@ public class PaddleManager : MonoBehaviour
         _leftPaddle = Instantiate(_paddlePrefab, -spawnPos, _paddlePrefab.transform.rotation);
         _leftPaddle.SetTeam(Player.Left);
         StartCoroutine(PaddleSpawnAnimation(_leftPaddle));
-        yield return StartCoroutine(_leftPaddle.SetColor(Color.green));
+        yield return StartCoroutine(_leftPaddle.SetColor(_leftPaddleColor));
 
         yield return new WaitForSeconds(0.2f);
 
         _rightPaddle = Instantiate(_paddlePrefab, spawnPos, _paddlePrefab.transform.rotation);
         _rightPaddle.SetTeam(Player.Right);
         StartCoroutine(PaddleSpawnAnimation(_rightPaddle));
-        yield return StartCoroutine(_rightPaddle.SetColor(Color.magenta));
+        yield return StartCoroutine(_rightPaddle.SetColor(_rightPaddleColor));
     }
 
     private IEnumerator PaddleSpawnAnimation(Paddle paddle)

@@ -11,6 +11,7 @@ public class Paddle : MonoBehaviour
     private float _length;
 
     public Player owner;
+    public Color teamColor { get; set; }
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class Paddle : MonoBehaviour
 
     public IEnumerator SetColor(Color color)
     {
+        teamColor = color;
         Material material = GetComponent<MeshRenderer>().material;
         Color currentColor = material.color;
         float timePassed = 0f;
@@ -57,6 +59,9 @@ public class Paddle : MonoBehaviour
         PongBall ball = other.gameObject.GetComponent<PongBall>();
         if(ball != null)
         {
+            ball.SetColor(teamColor);
+            ball.SetAlignment(owner);
+
             // Determine where the ball hit the paddle on a scale of 1 to -1.
             float collisionOffset = ball.transform.position.y - transform.position.y;
 
