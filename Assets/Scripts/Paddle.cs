@@ -38,6 +38,20 @@ public class Paddle : MonoBehaviour
         _facingDirection = owner == Player.Left ? Vector3.right : Vector3.left;
     }
 
+    public IEnumerator SetColor(Color color)
+    {
+        Material material = GetComponent<MeshRenderer>().material;
+        Color currentColor = material.color;
+        float timePassed = 0f;
+        do
+        {
+            timePassed += Time.deltaTime;
+            material.color = Color.Lerp(currentColor, color, timePassed * 2f);
+            yield return null;
+        } while (material.color != color);
+        
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         PongBall ball = other.gameObject.GetComponent<PongBall>();
@@ -76,5 +90,8 @@ public class Paddle : MonoBehaviour
             ballRB.AddForce(ballTrajectory * ball.speed, ForceMode.Impulse);
         }
     }
+
+
+
 
 }
