@@ -39,6 +39,7 @@ public class TrianglePickup : MonoBehaviour
         {
             interactable = false;
             SlowDownBall(ball);
+            AudioManager.instance.PlayClipTriangleHit();
             StartCoroutine(SpinOnHit());
         }
     }
