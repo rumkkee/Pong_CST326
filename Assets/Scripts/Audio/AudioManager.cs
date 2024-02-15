@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _paddleHitAudio;
     [SerializeField] private AudioSource _barrierHitAudio;
     [SerializeField] private AudioSource _scoreAudio;
+    [SerializeField] private AudioSource _triangleHit;
 
     public static AudioManager instance;
 
@@ -35,5 +36,10 @@ public class AudioManager : MonoBehaviour
     public void PlayClipOnScore()
     {
         _scoreAudio.Play();
+    }
+
+    public void PlayClipTriangleHit()
+    {
+        _triangleHit.Play();
     }
 }

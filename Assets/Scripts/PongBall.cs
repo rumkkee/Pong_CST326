@@ -9,12 +9,16 @@ public class PongBall : MonoBehaviour
     public float speedBoostPerHit;
     public float maxSpeed;
 
+    [SerializeField] TrailRenderer _trailRenderer;
+    private Player playerAlignment;
+
     public delegate void BallCollided();
     public static event BallCollided OnBallCollision;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        playerAlignment = Player.None;
     }
 
     /// <summary>
@@ -37,6 +41,21 @@ public class PongBall : MonoBehaviour
     {
         speed = speed + speedBoostPerHit;
     }
+
+    public void SetColor(Color color)
+    {
+        Material material = GetComponent<MeshRenderer>().material;
+        material.color = Color.Lerp(Color.white, color, 0.8f);
+
+        _trailRenderer.endColor = new Color(color.r, color.g, color.b, 0);
+    }
+
+    public void SetAlignment(Player player)
+    {
+        playerAlignment = player;
+    }
+
+    public Player GetAlignment() => playerAlignment;
 
     private void OnCollisionEnter(Collision other)
     {

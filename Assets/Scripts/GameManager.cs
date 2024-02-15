@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.5f);
         yield return StartCoroutine(PaddleManager.instance.CreatePaddles());
         yield return new WaitForSeconds(0.5f);
         LaunchBall(Player.Right);
@@ -55,5 +56,6 @@ public class GameManager : MonoBehaviour
 public enum Player
 {
     Left = 0,
-    Right = 10
+    Right = 10,
+    None = 100
 }
