@@ -48,6 +48,7 @@ public class ScoreManager : MonoBehaviour
     {
         _leftScore = 0;
         _rightScore = 0;
+        ScoreDisplayManager.instance.ResetScores();
         Debug.Log(
             "Scores Reset! \n" +
             $"Left: {_leftScore}, Right: {_rightScore}"

@@ -29,4 +29,10 @@ public class ScoreDisplayManager : MonoBehaviour
         _rightScoreText.text = newScore.ToString();
         StartCoroutine(ScoreTextAnimator.instance.GrowText(_rightScoreText));
     }
+
+    public void ResetScores()
+    {
+        UpdateLeftScore(0);
+        UpdateRightScore(0);
+    }
 }
