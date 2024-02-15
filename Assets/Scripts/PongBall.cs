@@ -55,6 +55,8 @@ public class PongBall : MonoBehaviour
         playerAlignment = player;
     }
 
+    public Player GetAlignment() => playerAlignment;
+
     private void OnCollisionEnter(Collision other)
     {
         OnBallCollision();

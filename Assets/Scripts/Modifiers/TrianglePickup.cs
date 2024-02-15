@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TrianglePickup : MonoBehaviour
 {
+
+    [SerializeField] private float speedModAmount;
+
     [SerializeField] private Vector3 maxBoardHeight;
     [SerializeField] private Vector3 minBoardHeight;
 
@@ -22,40 +25,51 @@ public class TrianglePickup : MonoBehaviour
 
     private void Update()
     {
-        //transform.RotateAround(transform.position, transform.up, 3f * Time.fixedDeltaTime);
         timePassed += Time.fixedDeltaTime;
         transform.position = Vector3.Lerp(minBoardHeight, maxBoardHeight, Mathf.PingPong(timePassed * 0.04f, 1));
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(SpinOnHit());
-        }
+        }*/
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Interactable:" + interactable);
         PongBall ball = other.gameObject.GetComponent<PongBall>();
-        if(ball != null && interactable)
+        if(ball != null && ball.GetAlignment() != Player.None && interactable)
         {
+            if(!interactable || ball.GetAlignment() == Player.None) { return; }
+
             interactable = false;
-            SlowDownBall(ball);
+            ModifyBallSpeed(ball);
             AudioManager.instance.PlayClipTriangleHit();
             StartCoroutine(SpinOnHit());
         }
     }
 
-    private void SlowDownBall(PongBall ball)
+    private void ModifyBallSpeed(PongBall ball)
     {
         Rigidbody ballRB = ball.gameObject.GetComponent<Rigidbody>();
-
-        if(ball.speed > 35f)
+        if(speedModAmount > 0) // making ball faster
         {
-            ball.speed -= 5f;
+            if(ball.speed < ball.maxSpeed - speedModAmount)
+            {
+                ball.speed += speedModAmount;
+            }
         }
-        else if(ball.speed > 20f)
+        else // slowing ball
         {
-            ball.speed -= 3f;
+            if(ball.speed > 35f)
+            {
+                ball.speed += speedModAmount;
+            }
+            else if(ball.speed > 20f)
+            {
+                ball.speed += speedModAmount * 0.5f;
+            }
         }
+        
         Vector2 currentDirection = ballRB.velocity.normalized;
         ballRB.velocity = Vector2.zero;
         ballRB.AddForce( currentDirection * ball.speed, ForceMode.Impulse);
