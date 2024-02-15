@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WinRoutineHelper(Player scoringPlayer)
     {
+        ParticlesManager.instance.SpawnParticles(_currentBall.transform.position, _currentBall.GetColor());
         Destroy(_currentBall.gameObject);
         yield return new WaitForSeconds(1f);
 

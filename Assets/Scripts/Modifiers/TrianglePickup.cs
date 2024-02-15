@@ -35,7 +35,6 @@ public class TrianglePickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Interactable:" + interactable);
         PongBall ball = other.gameObject.GetComponent<PongBall>();
         if(ball != null && ball.GetAlignment() != Player.None && interactable)
         {
@@ -106,6 +105,5 @@ public class TrianglePickup : MonoBehaviour
         } while (timePassed < 1f);
         transform.rotation = initRotation;
         interactable = true;
-        Debug.Log("Returned from Spinhelper!");
     }
 }

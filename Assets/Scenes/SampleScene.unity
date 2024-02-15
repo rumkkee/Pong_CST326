@@ -1649,6 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionParticlesPrefab: {fileID: 2199935384548532530, guid: 8a260b692de10344fb7964cdb4541bb3, type: 3}
+  _victoryParticlesPrefab: {fileID: 396539183836022225, guid: 84ad1bb675b468f47b60409e35526a92, type: 3}
 --- !u!4 &1375493900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8065107347238726498, guid: c342b674017092945864cdb6f51a1b5a, type: 3}

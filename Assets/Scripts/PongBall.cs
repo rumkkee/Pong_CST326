@@ -76,4 +76,9 @@ public class PongBall : MonoBehaviour
         }
     }
 
+    public Color GetColor()
+    {
+        return GetComponent<MeshRenderer>().material.color;
+    }
+
 }
