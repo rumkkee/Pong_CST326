@@ -53,6 +53,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 50c8289afebaea44e996b52755680e42, type: 2}
     - target: {fileID: 5707417794636287431, guid: eb559ea3a74cfec41ba183c5c0e447a2, type: 3}
+      propertyPath: ownMoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707417794636287431, guid: eb559ea3a74cfec41ba183c5c0e447a2, type: 3}
+      propertyPath: speedModAmount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707417794636287431, guid: eb559ea3a74cfec41ba183c5c0e447a2, type: 3}
       propertyPath: maxBoardHeight.y
       value: -10
       objectReference: {fileID: 0}

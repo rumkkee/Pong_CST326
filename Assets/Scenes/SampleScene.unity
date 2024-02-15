@@ -2076,10 +2076,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4674330739346626442, guid: 726508d22a3518045b700346237b4394, type: 3}
-      propertyPath: speedModAmount
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7530592007279584861, guid: 726508d22a3518045b700346237b4394, type: 3}
       propertyPath: m_Name
       value: RedTriangle
@@ -2218,10 +2214,6 @@ PrefabInstance:
     - target: {fileID: 1320377383768249412, guid: 23e9f9ff459e2c842b456ae882af7b9d, type: 3}
       propertyPath: m_Name
       value: GreenTriangle
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183398471233774995, guid: 23e9f9ff459e2c842b456ae882af7b9d, type: 3}
-      propertyPath: speedModAmount
-      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 8938649843276711541, guid: 23e9f9ff459e2c842b456ae882af7b9d, type: 3}
       propertyPath: m_LocalPosition.x

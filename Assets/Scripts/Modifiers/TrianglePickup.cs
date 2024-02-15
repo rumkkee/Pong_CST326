@@ -6,6 +6,7 @@ public class TrianglePickup : MonoBehaviour
 {
 
     [SerializeField] private float speedModAmount;
+    [SerializeField] private float ownMoveSpeed;
 
     [SerializeField] private Vector3 maxBoardHeight;
     [SerializeField] private Vector3 minBoardHeight;
@@ -26,7 +27,7 @@ public class TrianglePickup : MonoBehaviour
     private void Update()
     {
         timePassed += Time.fixedDeltaTime;
-        transform.position = Vector3.Lerp(minBoardHeight, maxBoardHeight, Mathf.PingPong(timePassed * 0.04f, 1));
+        transform.position = Vector3.Lerp(minBoardHeight, maxBoardHeight, Mathf.PingPong(timePassed * 0.04f * ownMoveSpeed, 1));
 
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
