@@ -23,8 +23,8 @@ public class ScoreTextAnimator : MonoBehaviour
 
     public IEnumerator GrowText(TextMeshProUGUI text)
     {
+        // Anticipation: Normal to Shrunk text
         float timePassed = 0;
-
         float shrunkTextSize = normalTextSize * 0.4f;
         do
         {
@@ -34,8 +34,8 @@ public class ScoreTextAnimator : MonoBehaviour
         }
         while(text.fontSize != shrunkTextSize);
 
+        // Growing Text Size: Shrunk to Large text
         timePassed = 0;
-
         do
         {
             timePassed += Time.deltaTime;
@@ -45,8 +45,8 @@ public class ScoreTextAnimator : MonoBehaviour
         }
         while (text.fontSize != largeTextSize);
 
+        // Follow-through: Large to Normal
         timePassed = 0;
-
         yield return null;
         do
         {
@@ -56,8 +56,8 @@ public class ScoreTextAnimator : MonoBehaviour
         }
         while (text.fontSize != normalTextSize);
 
+        // Fading Text Color back to normal
         timePassed = 0;
-
         do
         {
             timePassed += Time.deltaTime;

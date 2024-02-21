@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class TrianglePickup : MonoBehaviour
 {
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _ballSpeedChange;
 
-    [SerializeField] private float speedModAmount;
-    [SerializeField] private float ownMoveSpeed;
-
-    [SerializeField] private Vector3 maxBoardHeight;
-    [SerializeField] private Vector3 minBoardHeight;
-
+    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Vector3 endPosition;
     private float timePassed;
 
     private Quaternion initRotation;
@@ -27,19 +25,16 @@ public class TrianglePickup : MonoBehaviour
     private void Update()
     {
         timePassed += Time.fixedDeltaTime;
-        transform.position = Vector3.Lerp(minBoardHeight, maxBoardHeight, Mathf.PingPong(timePassed * 0.04f * ownMoveSpeed, 1));
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(SpinOnHit());
-        }*/
+        transform.position = Vector3.Lerp(startPosition, endPosition, Mathf.PingPong(timePassed * 0.04f * _moveSpeed, 1));
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!interactable) { return; }
+
         PongBall ball = other.gameObject.GetComponent<PongBall>();
-        if(ball != null && ball.GetAlignment() != Player.None && interactable)
+        if(ball != null)
         {
-            if(!interactable || ball.GetAlignment() == Player.None) { return; }
+            if(ball.GetPlayerAlignment() == Player.None) { return; }
 
             interactable = false;
             ModifyBallSpeed(ball);
@@ -51,22 +46,22 @@ public class TrianglePickup : MonoBehaviour
     private void ModifyBallSpeed(PongBall ball)
     {
         Rigidbody ballRB = ball.gameObject.GetComponent<Rigidbody>();
-        if(speedModAmount > 0) // making ball faster
+        if(_ballSpeedChange > 0) // making ball faster
         {
-            if(ball.speed < ball.maxSpeed - speedModAmount)
+            if(ball.speed < ball.maxSpeed - _ballSpeedChange)
             {
-                ball.speed += speedModAmount;
+                ball.speed += _ballSpeedChange;
             }
         }
         else // slowing ball
         {
             if(ball.speed > 35f)
             {
-                ball.speed += speedModAmount;
+                ball.speed += _ballSpeedChange;
             }
             else if(ball.speed > 20f)
             {
-                ball.speed += speedModAmount * 0.5f;
+                ball.speed += _ballSpeedChange * 0.5f;
             }
         }
         

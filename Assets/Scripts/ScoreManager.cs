@@ -7,8 +7,6 @@ public class ScoreManager : MonoBehaviour
     private int _leftScore;
     private int _rightScore;
 
-    
-
     private void Awake()
     {
         Goal.OnBallScored += RaiseScore;

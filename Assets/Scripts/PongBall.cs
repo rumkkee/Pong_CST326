@@ -41,7 +41,14 @@ public class PongBall : MonoBehaviour
 
     public void AddSpeed()
     {
-        speed = speed + speedBoostPerHit;
+        if(speed + speedBoostPerHit <= maxSpeed)
+        {
+            speed = speed + speedBoostPerHit;
+        }
+        else
+        {
+            speed = maxSpeed;
+        }
     }
 
     public void SetColor(Color color)
@@ -58,7 +65,7 @@ public class PongBall : MonoBehaviour
         _playerAlignment = player;
     }
 
-    public Player GetAlignment() => _playerAlignment;
+    public Player GetPlayerAlignment() => _playerAlignment;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -67,7 +74,6 @@ public class PongBall : MonoBehaviour
 
         if (other.gameObject.CompareTag("Barrier"))
         {
-            //TODO: Play audio for colliding with barrier
             AudioManager.instance.PlayClipBarrierHit();
         }
         else if (other.gameObject.CompareTag("Paddle"))
